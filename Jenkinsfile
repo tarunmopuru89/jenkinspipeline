@@ -22,10 +22,7 @@ node {
     }
 
 
-    // -------------------------------------------------------------------------
-    // Run all the enclosed stages with access to the Salesforce
-    // JWT key credentials.
-    // -------------------------------------------------------------------------
+  withEnv(["HOME=${env.WORKSPACE}"]) {	
 	
 		// -------------------------------------------------------------------------
 		// Authenticate to Salesforce using the server key.
@@ -44,8 +41,10 @@ node {
 		// -------------------------------------------------------------------------
 
 		stage('Deploy and Run Tests') {
-		   "${toolbelt} force:mdapi:deploy --wait 10 --deploydir ${DEPLOYDIR} --targetusername UAT --testlevel ${TEST_LEVEL}"
-		   
+		    rc = command "${toolbelt}/sfdx force:mdapi:deploy --wait 10 --deploydir ${DEPLOYDIR} --targetusername UAT --testlevel ${TEST_LEVEL}"
+		    if (rc != 0) {
+			error 'Salesforce deploy and test run failed.'
+		    }
 		}
 
 
@@ -59,6 +58,7 @@ node {
 		//        error 'Salesforce deploy failed.'
 		//    }
 		//}
+	}
 }
 
 def command(script) {
