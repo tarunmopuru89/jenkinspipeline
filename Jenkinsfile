@@ -20,9 +20,6 @@ node {
     stage('checkout source') {
         checkout scm
     }
-
-
-  withEnv(["HOME=${env.WORKSPACE}"]) {	
 	
 		// -------------------------------------------------------------------------
 		// Authenticate to Salesforce using the server key.
@@ -58,7 +55,6 @@ node {
 		//        error 'Salesforce deploy failed.'
 		//    }
 		//}
-	}
 }
 
 def command(script) {
