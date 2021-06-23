@@ -26,7 +26,7 @@ node {
             if (isUnix()) {
                 rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${SERVER_KEY_CREDENTIALS_ID} --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
             }else{
-                 rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile \"${SERVER_KEY_CREDENTIALS_ID}\" --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
+                 rc = bat returnStatus: true, script: ${toolbelt} force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile \"${SERVER_KEY_CREDENTIALS_ID}\" --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
             }
             if (rc != 0) { error 'hub org authorization failed' }
 
