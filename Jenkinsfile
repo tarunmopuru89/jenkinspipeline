@@ -32,7 +32,7 @@ node {
 		// -------------------------------------------------------------------------
 
 		stage('Authorize to Salesforce') {
-			sh "${toolbelt} force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --jwtkeyfile ${SERVER_KEY_CREDENTIALS_ID} --username ${SF_USERNAME} --setalias UAT"
+			 "${toolbelt} force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --jwtkeyfile ${SERVER_KEY_CREDENTIALS_ID} --username ${SF_USERNAME} --setalias UAT"
 		   
 		}
 
@@ -42,7 +42,7 @@ node {
 		// -------------------------------------------------------------------------
 
 		stage('Deploy and Run Tests') {
-		   sh  "${toolbelt} force:mdapi:deploy --wait 10 --deploydir ${DEPLOYDIR} --targetusername UAT --testlevel ${TEST_LEVEL}"
+		   "${toolbelt} force:mdapi:deploy --wait 10 --deploydir ${DEPLOYDIR} --targetusername UAT --testlevel ${TEST_LEVEL}"
 		   
 		}
 
