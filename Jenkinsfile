@@ -10,7 +10,7 @@ node {
     def SF_INSTANCE_URL = env.SF_INSTANCE_URL ?: "https://login.salesforce.com"
 
 
-   // def toolbelt = tool 'toolbelt'
+    def toolbelt = env.Toolbelt
 
 
     // -------------------------------------------------------------------------
