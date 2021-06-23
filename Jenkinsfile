@@ -2,8 +2,8 @@
 
 node {
 
-    def SF_CONSUMER_KEY=3MVG9fe4g9fhX0E5i71C9f6TEmSuTZSFfNiM66maHGNJPdruenYCulfJhxuRYGb_BymRYEPw_Nzz58xErp9.O
-    def SF_USERNAME= deploymentuser@targetorg.com
+    def SF_CONSUMER_KEY='3MVG9fe4g9fhX0E5i71C9f6TEmSuTZSFfNiM66maHGNJPdruenYCulfJhxuRYGb_BymRYEPw_Nzz58xErp9.O'
+    def SF_USERNAME= 'deploymentuser@targetorg.com'
     def SERVER_KEY_CREDENTIALS_ID=env.SERVERKEY
     def DEPLOYDIR='src'
     def TEST_LEVEL='RunLocalTests'
