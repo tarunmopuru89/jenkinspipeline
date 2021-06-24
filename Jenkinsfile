@@ -21,6 +21,33 @@ node {
         checkout scm
     }
 
+sfdx force:auth:logout -u %username% -p
+
+
+stage('Logout') {
+            if (isUnix()) {
+                rc = sh returnStatus: true, script: "${toolbelt} force:auth:logout -u ${SF_USERNAME}-p"
+            }else{
+                 rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:logout -u ${SF_USERNAME}-p"
+            }
+            if (rc != 0) { error 'LogOut Failed' }
+
+			println rc
+			
+			// need to pull out assigned username
+			if (isUnix()) {
+				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d src/. -u ${SF_USERNAME}"
+			}else{
+			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:mdapi:deploy -d src/. -u ${SF_USERNAME}"
+			}
+			  
+            printf rmsg
+            println('Hello from a Job DSL script!')
+            println(rmsg)
+        
+    }
+
+
 
 
         stage('Deploy Code') {
@@ -45,6 +72,8 @@ node {
             println(rmsg)
         
     }
+	
+	
 }
 
 
