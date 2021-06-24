@@ -2,8 +2,8 @@
 
 node {
 
-    def SF_CONSUMER_KEY= '3MVG9fe4g9fhX0E7z0MhUI9pnzxUTVnerl91vHNCKg6jODAmKE8cbQOFnv3qukcYb.bbW0EWkgW4y2jSibeZE'
-    def SF_USERNAME= 'deploymentuser@qa2org.com'
+    def SF_CONSUMER_KEY= '3MVG9fe4g9fhX0E5i71C9f6TEmSuTZSFfNiM66maHGNJPdruenYCulfJhxuRYGb_BymRYEPw_Nzz58xErp9.O'
+    def SF_USERNAME= 'deploymentuser@targetorg.com'
     def SERVERKEY= env.SERVERKEY
     def DEPLOYDIR='src'
     def TEST_LEVEL='RunLocalTests'
