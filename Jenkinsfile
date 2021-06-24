@@ -21,8 +21,6 @@ node {
         checkout scm
     }
 
-sfdx force:auth:logout -u %username% -p
-
 
 stage('Logout') {
             if (isUnix()) {
