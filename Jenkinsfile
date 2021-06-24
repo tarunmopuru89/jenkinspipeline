@@ -21,10 +21,9 @@ node {
         checkout scm
     }
 	withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]){
-   # all stages will go here 
 
 
-        stage('Deploye Code') {
+        stage('Deploy Code') {
             if (isUnix()) {
                 rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${SERVER_KEY_CREDENTIALS_ID} --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
             }else{
