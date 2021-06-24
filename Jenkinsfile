@@ -4,7 +4,7 @@ node {
 
     def SF_CONSUMER_KEY= '3MVG9fe4g9fhX0E7z0MhUI9pnzxUTVnerl91vHNCKg6jODAmKE8cbQOFnv3qukcYb.bbW0EWkgW4y2jSibeZE'
     def SF_USERNAME= 'deploymentuser@qa2org.com'
-    def SERVER_KEY_CREDENTIALS_ID= env.SERVERKEY
+    def SERVERKEY= env.SERVERKEY
     def DEPLOYDIR='src'
     def TEST_LEVEL='RunLocalTests'
     def SF_INSTANCE_URL = env.SF_INSTANCE_URL ?: "https://login.salesforce.com"
@@ -20,7 +20,7 @@ node {
     stage('checkout source') {
         checkout scm
     }
-	withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]){
+	withCredentials([file(credentialsId: SERVERKEY, variable: 'server_key_file')]){
 
 
         stage('Deploy Code') {
