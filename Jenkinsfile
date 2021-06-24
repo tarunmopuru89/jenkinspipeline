@@ -20,14 +20,14 @@ node {
     stage('checkout source') {
         checkout scm
     }
-	withCredentials([file(credentialsId: SERVERKEY, variable: 'server_key_file')]){
+
 
 
         stage('Deploy Code') {
             if (isUnix()) {
-                rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
+                rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${SERVERKEY} --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
             }else{
-                 rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile \"${server_key_file}\" --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
+                 rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile \"${SERVERKEY}\" --setdefaultdevhubusername --instanceurl ${SF_INSTANCE_URL}"
             }
             if (rc != 0) { error 'hub org authorization failed' }
 
@@ -43,7 +43,7 @@ node {
             printf rmsg
             println('Hello from a Job DSL script!')
             println(rmsg)
-        }
+        
     }
 }
 
